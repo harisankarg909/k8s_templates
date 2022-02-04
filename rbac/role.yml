@@ -1,0 +1,21 @@
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ingress-role
+  namespace: ingress-space
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods", "configmaps", "secrets", "namespaces"]
+  verbs: ["get"]
+- apiGroups: [""] # "" indicates the core API group
+  resourceNames:
+    - "ingress-controller-leader-nginx"
+  resources: ["configmaps"]
+  verbs: ["get", "update"]
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["configmaps"]
+  verbs: ["create"]
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["endpoints"]
+  verbs: ["get"]

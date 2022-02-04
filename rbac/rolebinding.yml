@@ -1,0 +1,13 @@
+# https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ingressrolebinding
+  namespace: ingress-space
+subjects:
+- kind: ServiceAccount
+  name: ingress-serviceaccount
+roleRef:
+  kind: Role
+  name: ingress-role
+  apiGroup: rbac.authorization.k8s.io
